@@ -14,3 +14,10 @@ alias va=vagrant
 mkdir vm/oasis
 va up
 ```
+
+4. build images
+```sh
+docker build -f=Dockerfile_ubuntu -t oasis/ubuntu:0.1 .
+docker build -f=Dockerfile_java -t oasis/jvm:0.1 .
+docker build -f=Dockerfile_mongodb -t oasis/mongo:0.1 .
+```

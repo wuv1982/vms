@@ -1,7 +1,8 @@
+# oasis/ubuntu:0.1
 FROM ubuntu:trusty
 
 COPY env/.bash_profile /root/.bash_profile
 
 RUN \
-  apt-get update && \
+  apt-get update -y && \
   apt-get install -y software-properties-common
