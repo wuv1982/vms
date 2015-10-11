@@ -1,0 +1,19 @@
+FROM java:8
+MAINTAINER oasis
+
+ENV VERSION_PLAY ${VERSION_PLAY}
+
+RUN echo 'Acquire::http { Proxy "http://172.17.42.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+RUN \
+  yum update -y && yum install -y unzip && \
+  curl -O http://downloads.typesafe.com/typesafe-activator/${VERSION_PLAY}/typesafe-activator-${VERSION_PLAY}.zip && \
+  unzip typesafe-activator-${VERSION_PLAY}.zip -d / && \
+  rm typesafe-activator-${VERSION_PLAY}.zip && \
+  chmod a+x /activator-${VERSION_PLAY}/activator
+
+ENV PATH $PATH:/activator-${VERSION_PLAY}
+
+EXPOSE 9000 9999
+#RUN mkdir /app
+#WORKDIR /app
+#CMD ["activator", "run"]

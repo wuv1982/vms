@@ -5,7 +5,7 @@ ENV VERSION_MONGO_DB 3.0.6
 
 #COPY env/mongod.conf /etc/mongod.conf
 
-RUN echo 'Acquire::http { Proxy "http://172.17.42.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+#RUN echo 'Acquire::http { Proxy "http://172.17.42.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
 RUN \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list && \
@@ -13,4 +13,4 @@ RUN \
     apt-get install -y mongodb-org=${VERSION_MONGO_DB} mongodb-org-server=${VERSION_MONGO_DB} mongodb-org-shell=${VERSION_MONGO_DB} mongodb-org-mongos=${VERSION_MONGO_DB} mongodb-org-tools=${VERSION_MONGO_DB}
 
 ENTRYPOINT ["service mongod start"]
-#CMD ["--noprealloc", "--smallfiles"]
+CMD ["--noprealloc", "--smallfiles"]
