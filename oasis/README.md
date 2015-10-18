@@ -34,7 +34,7 @@ First of all, we need 3 docker images
 0. __linux OS image__ (ubuntu/trusty)
 ```sh
 # official image
-docker pull ubuntu/trusty
+docker pull ubuntu:trusty
 ```
 0. __jvm image__ (requires java8)<br>
 ```sh
